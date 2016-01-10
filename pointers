@@ -1,0 +1,15 @@
+1. add maven repo to deployment assembly
+2. view resolvers
+3. request mapping types - in controller
+	- path variables : /hello/{name} with @PathVariable("name")
+	- MatrixVariable : Matrix variables can appear in any path segment, each matrix variable separated 
+						with a ";" (semicolon). For example: "/cars;color=red;year=2012". Multiple values may be either "," (comma) 
+						separated "color=red,green,blue" or the variable name may be repeated "color=red;color=green;color=blue".
+						@MatrixVariable(required=false, defaultValue="1")
+						@MatrixVariable(pathVar="petId"")
+						<mvc:annotation-driven enable-matrix-variables="true"/>
+	- Consumable Media Types : consumes="application/json" followed by @RequestBody
+	- Producible Media Types : produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+	
+4. Response types:
+	- string will try to resolve too a view
