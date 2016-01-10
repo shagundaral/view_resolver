@@ -21,10 +21,15 @@ public class FirstController{
 	 */
 	private static final long serialVersionUID = 8677681L;
 
-/*	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
 		model.addAttribute("message", "Spring 3 MVC Hello World");
+		List<Employee> emps = new ArrayList<Employee>();
+		emps.add(new Employee("Shagun", 3760));
+		emps.add(new Employee("Kunal", 1234));
+		emps.add(new Employee("Rekha", 9876));
+		model.addAllAttributes(emps);
 		return "javaservletpage";
 
 	}
@@ -39,9 +44,9 @@ public class FirstController{
 		return model;
 
 	}
-	*/
+	
 	@RequestMapping(value = "/employee", method = RequestMethod.GET, produces={"application/xml", "application/json"})
-	public @ResponseBody List<Employee> employee(@PathVariable("emp") Employee emp){
+	public @ResponseBody List<Employee> employee(){
 		
 		List<Employee> emps = new ArrayList<Employee>();
 		emps.add(new Employee("Shagun", 3760));
