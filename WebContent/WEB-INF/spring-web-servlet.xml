@@ -4,11 +4,13 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
-        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/mvc 
-        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/oxm
+        http://www.springframework.org/schema/oxm/spring-oxm-3.1.xsd">
         
 	<context:component-scan base-package="controllers"></context:component-scan>
 
@@ -29,19 +31,18 @@
 		<map>
 		   <entry key="json" value="application/json" />
 		   <entry key="xml" value="application/xml" />
-		   <entry key="rss" value="application/rss+xml" />
 		</map>
 	  </property>
 
 	  <property name="defaultViews">
 		<list>
 		  <!-- JSON View -->
-		  <!-- <bean
+		 <bean
 			class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-		  </bean> -->
-
+		  </bean>
+ 
 		  <!-- JAXB XML View -->
-		  <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+		  <!-- <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
 			<constructor-arg>
 				<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
 				   <property name="classesToBeBound">
@@ -51,11 +52,10 @@
 				   </property>
 				</bean>
 			</constructor-arg>
-		  </bean>
+		  </bean> --> 
 		 </list>
 	  </property>
-	  <property name="ignoreAcceptHeader" value="true" />
-
+<property name="ignoreAcceptHeader" value="true" />
 	</bean>
 
 	<!-- If no extension matched, use JSP view -->
@@ -65,10 +65,28 @@
 		<property name="prefix">
 			<value>/WEB-INF/views/</value>
 		</property>
-		<property name="suffix">
+		<property name="suffix">	
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	<!-- <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+	  <property name="providers">
+	    <list>
+	      <ref local="daoAuthenticationProvider"/>
+	    </list>
+	  </property>
+	</bean>
+	
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+	  <property name="userDetailsService" ref="inMemoryDaoImpl"/>
+	  <property name="passwordEncoder" ref="passwordEncoder"/>
+	</bean>
+	
+	<user-service id="userDetailsService">
+	    <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+	    <user name="bob" password="bobspassword" authorities="ROLE_USER" />
+	</user-service> -->
 
 	<mvc:resources location="/resources/" mapping="/resources/**"/>
 	<mvc:annotation-driven/>

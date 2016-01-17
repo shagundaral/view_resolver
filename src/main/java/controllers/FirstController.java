@@ -1,7 +1,12 @@
 package controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 import models.Employee;
 
@@ -45,15 +50,15 @@ public class FirstController{
 
 	}
 	
-	@RequestMapping(value = "/employee", method = RequestMethod.GET, produces={"application/xml", "application/json"})
+	@RequestMapping(value = "/employee")
 	public @ResponseBody List<Employee> employee(){
-		
 		List<Employee> emps = new ArrayList<Employee>();
 		emps.add(new Employee("Shagun", 3760));
 		emps.add(new Employee("Kunal", 1234));
 		emps.add(new Employee("Rekha", 9876));
-		
 		return emps;
 	}
+	
+	
 
 }

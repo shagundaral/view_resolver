@@ -1,16 +1,23 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @XmlRootElement(name = "emp")
-public class Employee {
+public class Employee implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 189828323L;
 	private String name;
-	private int id;
+	private transient int id;
 	private List<String> departments;
 	
 	public Employee() {
@@ -36,6 +43,8 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@JsonIgnore
 	public int getId() {
 		return id;
 	}
