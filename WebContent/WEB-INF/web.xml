@@ -4,9 +4,9 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	
-	<listener>
+	<!-- <listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> -->
 	
 	<servlet>
 		<servlet-name>spring-web</servlet-name>
@@ -24,5 +24,9 @@
 	   <param-value>/WEB-INF/spring-web-servlet.xml</param-value>
 	</context-param>
 
+<!-- 	<context-param>
+       <param-name>contextConfigLocation</param-name>
+       <param-value>classpath:security-context.xml</param-value>
+	</context-param> -->
 	
 </web-app>
